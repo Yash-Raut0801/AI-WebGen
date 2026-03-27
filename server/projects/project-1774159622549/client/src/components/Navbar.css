@@ -1,0 +1,58 @@
+.navbar {
+  background-color: rgba(26, 26, 26, 0.9);
+  color: #f0f0f0;
+  padding: 15px 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.navbar-brand {
+  font-size: 1.8em;
+  font-weight: 900;
+  letter-spacing: 1px;
+  color: #e2a04e; /* A golden touch */
+  text-transform: uppercase;
+}
+
+.navbar-menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.navbar-item {
+  margin-left: 30px;
+}
+
+.navbar-item a {
+  color: #f0f0f0;
+  font-size: 1.1em;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.navbar-item a:hover {
+  color: #e2a04e;
+}
+
+@media (max-width: 768px) {
+  .navbar-menu {
+    display: none; /* Hide menu on small screens, could add a hamburger icon */
+  }
+
+  .navbar-container {
+    justify-content: center;
+  }
+}

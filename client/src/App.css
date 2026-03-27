@@ -1,0 +1,145 @@
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  color: white;
+}
+
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 40px;
+}
+
+.title {
+  text-align: center;
+  font-size: 42px;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  text-align: center;
+  color: #cbd5f5;
+  margin-bottom: 40px;
+}
+
+.input-section {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.prompt-box {
+  height: 150px;
+  border-radius: 10px;
+  border: none;
+  padding: 15px;
+  font-size: 16px;
+  resize: none;
+}
+
+.generate-btn {
+  background: #6366f1;
+  border: none;
+  padding: 12px;
+  font-size: 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: white;
+  transition: 0.3s;
+}
+
+.generate-btn:hover {
+  background: #4f46e5;
+}
+
+.output-section {
+  margin-top: 40px;
+}
+
+.code-box {
+  background: #020617;
+  padding: 20px;
+  border-radius: 10px;
+  overflow-x: auto;
+  white-space: pre-wrap;
+}
+
+
+.files-container{
+display:flex;
+flex-direction:column;
+gap:20px;
+}
+
+.file-card{
+background:#0f172a;
+padding:20px;
+border-radius:10px;
+border:1px solid #1e293b;
+}
+
+.file-card h3{
+margin-bottom:10px;
+color:#60a5fa;
+font-size:18px;
+}
+
+.code-box{
+background:#020617;
+padding:20px;
+border-radius:10px;
+overflow-x:auto;
+white-space:pre-wrap;
+font-size:14px;
+}
+
+/* Addition */
+
+.workspace{
+display:flex;
+gap:20px;
+margin-top:30px;
+}
+
+.file-explorer{
+width:200px;
+background:#020617;
+padding:15px;
+border-radius:10px;
+}
+
+.file-item{
+padding:10px;
+cursor:pointer;
+border-bottom:1px solid #1e293b;
+}
+
+.file-item:hover{
+background:#1e293b;
+}
+
+.editor{
+flex:1;
+}
+
+.preview{
+flex:1;
+background:#020617;
+padding:10px;
+border-radius:10px;
+}
+
+.download-btn{
+  background:#28a745;
+  color:white;
+  border:none;
+  padding:10px 18px;
+  margin-left:10px;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+.download-btn:hover{
+  background:#1f7e34;
+}

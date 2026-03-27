@@ -1,0 +1,19 @@
+{
+  "name": "ai-web-gen-root-folder",
+  "version": "1.0.0",
+  "description": "This is my AI-WebGen root folder",
+  "license": "ISC",
+  "author": "Yash Raut",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "cd server && npm run dev",
+    "client": "cd client && npm start"
+  },
+  "dependencies": {
+    "concurrently": "^9.2.1",
+    "mongoose": "^9.3.3"
+  }
+}

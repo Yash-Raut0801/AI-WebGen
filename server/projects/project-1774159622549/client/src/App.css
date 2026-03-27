@@ -1,0 +1,6 @@
+/* App.css remains largely empty as styles are component-specific or in index.css */
+/* Main layout styles will be defined within individual component CSS or App.js itself if needed */
+
+.App {
+  text-align: center;
+}

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foodie Express</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Foodie Express</h1>
+            <nav>
+                <ul>
+                    <li><a href="#menu">Menu</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero" class="hero-section">
+            <div class="container">
+                <h2>Your cravings, delivered!</h2>
+                <p>Taste the best Pizza, Burgers, and Refreshing Soft Drinks.</p>
+                <a href="#menu" class="btn">View Our Menu</a>
+            </div>
+        </section>
+
+        <section id="menu" class="menu-section">
+            <div class="container">
+                <h2>Our Delicious Menu</h2>
+                <div class="menu-grid">
+                    <div class="menu-item" data-item="pizza-margherita" data-price="12.99">
+                        <img src="https://via.placeholder.com/300x200?text=Pizza" alt="Pizza">
+                        <h3>Classic Margherita Pizza</h3>
+                        <p>Fresh tomato sauce, mozzarella, and basil on a crispy crust.</p>
+                        <span class="price">$12.99</span>
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                    </div>
+
+                    <div class="menu-item" data-item="burger-cheeseburger" data-price="9.50">
+                        <img src="https://via.placeholder.com/300x200?text=Burger" alt="Burger">
+                        <h3>Juicy Cheeseburger</h3>
+                        <p>Grilled patty, melted cheese, lettuce, tomato, onion, and pickles.</p>
+                        <span class="price">$9.50</span>
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                    </div>
+
+                    <div class="menu-item" data-item="softdrink-cola" data-price="2.50">
+                        <img src="https://via.placeholder.com/300x200?text=Cola" alt="Cola Soft Drink">
+                        <h3>Refreshing Cola</h3>
+                        <p>A classic, ice-cold cola to quench your thirst.</p>
+                        <span class="price">$2.50</span>
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                    </div>
+
+                    <div class="menu-item" data-item="pizza-pepperoni" data-price="14.99">
+                        <img src="https://via.placeholder.com/300x200?text=Pepperoni+Pizza" alt="Pepperoni Pizza">
+                        <h3>Spicy Pepperoni Pizza</h3>
+                        <p>Loaded with pepperoni and extra mozzarella.</p>
+                        <span class="price">$14.99</span>
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                    </div>
+
+                    <div class="menu-item" data-item="burger-chicken" data-price="10.00">
+                        <img src="https://via.placeholder.com/300x200?text=Chicken+Burger" alt="Chicken Burger">
+                        <h3>Crispy Chicken Burger</h3>
+                        <p>Fried chicken patty, fresh greens, and special sauce.</p>
+                        <span class="price">$10.00</span>
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                    </div>
+
+                    <div class="menu-item" data-item="softdrink-lemonade" data-price="3.00">
+                        <img src="https://via.placeholder.com/300x200?text=Lemonade" alt="Lemonade Soft Drink">
+                        <h3>Zesty Lemonade</h3>
+                        <p>Homemade lemonade, perfectly tart and sweet.</p>
+                        <span class="price">$3.00</span>
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact">
+        <div class="container">
+            <p>&copy; 2023 Foodie Express. All rights reserved.</p>
+            <p>Contact us: info@foodieexpress.com | (123) 456-7890</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
