@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Echo Grooves - Login / Sign Up</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="auth-container">
+    <div class="auth-form-card">
+        <h2 id="auth-title">Login to Echo Grooves</h2>
+        
+        <form id="login-form">
+            <div class="form-group">
+                <label for="login-email">Email:</label>
+                <input type="email" id="login-email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="login-password">Password:</label>
+                <input type="password" id="login-password" name="password" required>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+
+        <form id="signup-form" class="hidden">
+            <div class="form-group">
+                <label for="signup-name">Name:</label>
+                <input type="text" id="signup-name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="signup-email">Email:</label>
+                <input type="email" id="signup-email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="signup-password">Password:</label>
+                <input type="password" id="signup-password" name="password" required>
+            </div>
+            <button type="submit">Sign Up</button>
+        </form>
+
+        <p id="auth-message"></p>
+        
+        <p class="toggle-form">
+            <span id="toggle-login">Don't have an account? <a href="#">Sign Up</a></span>
+            <span id="toggle-signup" class="hidden">Already have an account? <a href="#">Login</a></span>
+        </p>
+    </div>
+
+    <script>
+        const API_BASE_URL = 'http://localhost:3000/api';
+
+        const loginForm = document.getElementById('login-form');
+        const signupForm = document.getElementById('signup-form');
+        const authTitle = document.getElementById('auth-title');
+        const authMessage = document.getElementById('auth-message');
+        const toggleLoginLink = document.querySelector('#toggle-login a');
+        const toggleSignupLink = document.querySelector('#toggle-signup a');
+        const toggleLoginSpan = document.getElementById('toggle-login');
+        const toggleSignupSpan = document.getElementById('toggle-signup');
+
+        // --- Form Toggle Logic ---
+        toggleLoginLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            loginForm.classList.add('hidden');
+            signupForm.classList.remove('hidden');
+            toggleLoginSpan.classList.add('hidden');
+            toggleSignupSpan.classList.remove('hidden');
+            authTitle.textContent = 'Sign Up for Echo Grooves';
+            authMessage.textContent = ''; // Clear message on toggle
+        });
+
+        toggleSignupLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            signupForm.classList.add('hidden');
+            loginForm.classList.remove('hidden');
+            toggleSignupSpan.classList.add('hidden');
+            toggleLoginSpan.classList.remove('hidden');
+            authTitle.textContent = 'Login to Echo Grooves';
+            authMessage.textContent = ''; // Clear message on toggle
+        });
+
+        // --- Authentication Logic ---
+        async function authenticate(endpoint, data) {
+            try {
+                const response = await fetch(`${API_BASE_URL}/${endpoint}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+                const result = await response.json();
+                if (response.ok) {
+                    authMessage.style.color = '#2ecc71'; // Green for success
+                    authMessage.textContent = result.message;
+                    if (result.token) {
+                        localStorage.setItem('token', result.token);
+                        localStorage.setItem('userId', result.user.id);
+                        localStorage.setItem('userName', result.user.name); // Store user name
+                        setTimeout(() => {
+                            window.location.href = 'index.html'; // Redirect to homepage
+                        }, 1000);
+                    }
+                } else {
+                    authMessage.style.color = '#e74c3c'; // Red for error
+                    authMessage.textContent = result.message || 'An error occurred';
+                }
+            } catch (error) {
+                console.error('Authentication error:', error);
+                authMessage.style.color = '#e74c3c';
+                authMessage.textContent = 'Network error. Please try again.';
+            }
+        }
+
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            authenticate('login', { email, password });
+        });
+
+        signupForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('signup-name').value;
+            const email = document.getElementById('signup-email').value;
+            const password = document.getElementById('signup-password').value;
+            authenticate('signup', { name, email, password });
+        });
+    </script>
+</body>
+</html>

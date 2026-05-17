@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile - Echo Grooves</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">Echo Grooves</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="cart.html">Cart</a></li>
+                <li><a href="profile.html" class="active">Profile</a></li>
+            </ul>
+            <div class="auth-buttons">
+                <a href="login.html" class="button" id="loginButton">Login</a>
+                <a href="signup.html" class="button" id="signupButton">Sign Up</a>
+                <button id="logoutButton" class="hidden">Logout</button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="container">
+            <h2 class="page-title">Your Profile</h2>
+            
+            <div id="profileInfo" class="user-info">
+                <h3>User Information</h3>
+                <p>Name: <span id="userName"></span></p>
+                <p>Email: <span id="userEmail"></span></p>
+                <div id="profileMessage" class="message hidden"></div>
+            </div>
+
+            <div id="orderHistorySection" class="order-history">
+                <h3>Order History</h3>
+                <div id="ordersList">
+                    <p id="emptyOrdersMessage">No orders placed yet.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Echo Grooves. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

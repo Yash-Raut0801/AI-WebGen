@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart - Echo Grooves</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">Echo Grooves</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="cart.html" class="active">Cart</a></li>
+                <li><a href="profile.html">Profile</a></li>
+            </ul>
+            <div class="auth-buttons">
+                <a href="login.html" class="button" id="loginButton">Login</a>
+                <a href="signup.html" class="button" id="signupButton">Sign Up</a>
+                <button id="logoutButton" class="hidden">Logout</button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="container">
+            <h2 class="page-title">Your Shopping Cart</h2>
+            <div id="cartItems" class="cart-items">
+                <!-- Cart items will be loaded here by JavaScript -->
+                <p id="emptyCartMessage">Your cart is empty.</p>
+            </div>
+            <div id="cartSummary" class="cart-summary hidden">
+                <h3>Total: $<span id="cartTotal">0.00</span></h3>
+                <button id="purchaseButton" class="purchase-button">Purchase Items</button>
+            </div>
+            <div id="purchaseMessage" class="message hidden"></div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Echo Grooves. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
