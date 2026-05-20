@@ -77,8 +77,9 @@ ${js}
 
     } catch (error) {
 
-      console.error(error);
-      alert("Failed to generate website");
+      console.error("FULL ERROR:", error);
+
+      alert(error.response?.data?.message || error.message || "Failed to generate website");
 
     } finally {
 
@@ -298,7 +299,7 @@ Large full-stack projects may need to be downloaded and run locally."
             <p style={{ color: "orange" }}>
               ⚠ Preview not available for MERN stack, ReactJS, NodeJS or ExpressJS projects.
               Please download the project and run it locally.
-            
+
               Steps to run:
 
               1. Download ZIP

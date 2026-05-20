@@ -44,9 +44,9 @@ export const generateWebsiteController = async (req, res) => {
         //     await fs.writeFile(filePath, file.content);
 
         // }
-        // console.log("AI OUTPUT:", aiOutput);
-        // console.log("PARSED FILES:", files);
-        // console.log("FILES PARSED:", files.length);
+        console.log("AI OUTPUT:", aiOutput);
+        console.log("PARSED FILES:", files);
+        console.log("FILES PARSED:", files.length);
 
 
         res.json({
