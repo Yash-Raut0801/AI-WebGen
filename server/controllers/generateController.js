@@ -21,7 +21,7 @@ export const generateWebsiteController = async (req, res) => {
         //     throw new Error("AI returned no files");
         // }
 
-        if (files.length > 15) {
+        if (files.length > 20) {
             throw new Error("Too many files generated");
         }
         const savedProject = await Project.create({
