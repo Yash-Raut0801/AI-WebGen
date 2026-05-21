@@ -326,6 +326,22 @@ Large full-stack projects may need to be downloaded and run locally."
         </div>
 
       </div>
+      {/* Footer */}
+      <footer className="footer">
+        <p>
+          Built for educational purposes &nbsp;·&nbsp; Not intended for commercial use
+        </p>
+        <p>
+          Made with ❤️ by{" Yash Raut "}
+          <a
+            href="https://github.com/Yash-Raut0801"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Yash Raut
+          </a>
+        </p>
+      </footer>
 
     </div>
 
