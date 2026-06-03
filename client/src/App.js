@@ -55,8 +55,8 @@ ${js}
       setLoading(true);
       setFiles([]);
 
-      // const res = await axios.post("https://ai-webgen-backend-l2oo.onrender.com/api/generate",
-      const res = await axios.post("http://localhost:8000/api/generate",
+      const res = await axios.post("https://ai-webgen-backend-l2oo.onrender.com/api/generate",
+      // const res = await axios.post("http://localhost:8000/api/generate",
         { prompt },
         { timeout: 120000 }
       );
