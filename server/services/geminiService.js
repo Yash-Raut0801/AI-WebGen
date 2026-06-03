@@ -7,7 +7,106 @@ const ai = new GoogleGenAI({
   apiKey: process.env.GEMINI_API_KEY
 });
 
+
+// ── Layer 1: Basic sanity check ──────────────────────────
+// Block empty or too-short prompts
+function isValidLength(prompt) {
+  const trimmed = prompt.trim();
+  return trimmed.length >= 10 && trimmed.length <= 1000;
+}
+
+// ── Layer 2: AI-based intent classification ──────────────
+// Asks Gemini itself if the prompt is safe and legitimate
+async function isSafePrompt(prompt) {
+  const classificationPrompt = `
+You are a strict content safety classifier for a website generation tool.
+ 
+A user has submitted this prompt:
+"${prompt}"
+ 
+AUTOMATIC REJECTION RULES — mark UNSAFE if the prompt:
+ 
+1. MENTIONS ANY REAL BRAND, COMPANY, APP, OR WEBSITE BY NAME
+   - Banks: SBI, HDFC, ICICI, Axis, PayTM, PhonePe, GPay, Razorpay, Stripe
+   - Tech: Google, Facebook, Instagram, Twitter, Netflix, Amazon, Flipkart, YouTube, WhatsApp, LinkedIn, GitHub, Apple, Microsoft, Uber, Swiggy, Zomato
+   - Government: Aadhaar, IRCTC, DigiLocker, any government portal
+   - ANY other real brand name anywhere in the world
+   - Even if the words "clone", "copy", "fake" are NOT used — just mentioning a real brand to replicate its look or features = UNSAFE
+ 
+2. ASKS TO REPLICATE OR MIMIC SOMETHING REAL
+   - "looks like", "similar to", "inspired by", "like X", "same as X"
+   - Any intent to copy design, layout, or features of a real product
+ 
+3. HARMFUL INTENT
+   - Phishing, credential harvesting, fake login pages
+   - Malware, hacking tools, exploits
+   - Adult, violent, hateful, or illegal content
+   - Scams, pyramid schemes, gambling
+ 
+4. SUSPICIOUS PATTERNS
+   - Fake OTP, fake payment, fake verification pages
+   - Anything designed to deceive users
+ 
+APPROVE ONLY IF:
+- Fully generic website with no real brand mentioned
+- Clear educational or portfolio project
+- General e-commerce, blog, portfolio, dashboard, CRUD app
+- No reference to any real existing product or company
+ 
+EXAMPLES:
+ 
+UNSAFE: "Create a website like Netflix"
+UNSAFE: "Make a Google homepage clone"  
+UNSAFE: "Build a login page similar to Facebook"
+UNSAFE: "Create an app inspired by Swiggy"
+UNSAFE: "Make something like Amazon"
+UNSAFE: "Build a site that looks like IRCTC"
+UNSAFE: "Create a PayTM style payment page"
+ 
+SAFE: "Create a food delivery website"
+SAFE: "Build an e-commerce store for shoes"
+SAFE: "Make a movie streaming landing page"
+SAFE: "Create a portfolio website"
+SAFE: "Build a task management MERN app"
+ 
+Respond with ONLY one word — SAFE or UNSAFE.
+Nothing else. No explanation. Just one word.
+`;
+
+  const response = await ai.models.generateContent({
+    model: "gemini-2.5-flash",
+    contents: [
+      {
+        role: "user",
+        parts: [{ text: classificationPrompt }]
+      }
+    ],
+    generationConfig: {
+      temperature: 0.0,   // Zero temperature = deterministic, no creativity
+      maxOutputTokens: 5  // Only needs one word
+    }
+  });
+
+  const result = response.candidates[0].content.parts[0].text.trim().toUpperCase();
+  return result === "SAFE";
+}
+
 export async function generateWebsite(prompt) {
+
+  // Layer 1 — Length check
+  if (!isValidLength(prompt)) {
+    throw new Error("Prompt must be between 10 and 1000 characters.");
+  }
+
+  // Layer 2 — AI safety classification
+  const safe = await isSafePrompt(prompt);
+  if (!safe) {
+    throw new Error(
+      "Your prompt was flagged as potentially harmful or violating our usage policy. " +
+      "Please use this tool for legitimate educational or portfolio purposes only."
+    );
+  }
+
   const systemPrompt = `
 You are a senior full stack web developer.
 
